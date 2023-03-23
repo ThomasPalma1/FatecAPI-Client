@@ -1,9 +1,10 @@
 # Money Mind
 
-This template should help get you started developing with Vue 3 in Vite.
+This repository contains the codes for the client-side part of the application, such as the main screen, its graphs and the way the data is represented on the platform.
 
 ## Recommended IDE Setup
 
+There are many IDEs available in the market today, however we recommend utilizing Visual Studio Code coupled with Volar for better experience.
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
 ## Type Support for `.vue` Imports in TS
