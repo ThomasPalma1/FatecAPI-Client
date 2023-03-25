@@ -1,13 +1,7 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
   <div>
-    <h1>This is an comparator page</h1>
+    <h1>This is a comparator page</h1>
   </div>
 </template>
 
-<style>
-</style>
-
+<style></style>

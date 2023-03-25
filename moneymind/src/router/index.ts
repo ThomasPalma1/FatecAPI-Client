@@ -1,11 +1,14 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 import DashboardView from '@/views/DashboardView.vue'
 import PanelView from '@/views/PanelView.vue'
 import ComparatorView from '@/views/ComparatorView.vue'
-import { createRouter, createWebHistory } from 'vue-router'
 
+Vue.use(VueRouter)
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+const router = new VueRouter({
+  mode: 'history',
+  base: import.meta.env.BASE_URL,
   routes: [
     {
       path: '/',
