@@ -1,7 +1,15 @@
 <template>
-  <div>
-    <h1>This is an Dashboard page</h1>
-  </div>
+  <BasicLineCharts/>
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>
+
+<script lang="ts">
+import BasicLineCharts from '@/components/charts/BasicLineCharts.vue';
+export default {
+  components: {
+    BasicLineCharts,
+  },
+};
+</script>

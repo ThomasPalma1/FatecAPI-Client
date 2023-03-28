@@ -1,31 +1,31 @@
-  <template>
-    <div id="app">
-      <header>
-        <Navbar />
-      </header>
+<template>
+  <div id="app">
+    <header>
+      <Navbar />
+    </header>
 
-      <router-view></router-view>
-    </div>
-  </template>
+    <router-view></router-view>
+  </div>
+</template>
 
-<script>
-import Navbar from './components/Navbar.vue';
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+<script lang="ts">
+import Navbar from "./components/Navbar.vue";
+import Vue from "vue";
+import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Navbar
-  }
-}
+    Navbar,
+  },
+};
 </script>
 
-  <style>
-  header {
-    line-height: 1.5;
-    max-height: 100vh;
-  }
-  </style>
+<style>
+header {
+  line-height: 1.5;
+  max-height: 100vh;
+}
+</style>
