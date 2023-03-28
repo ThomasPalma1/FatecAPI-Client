@@ -4,6 +4,9 @@ import router from './router'
 
 import './assets/main.css'
 import vuetify from './plugins/vuetify'
+import HighchartsVue from "highcharts-vue";
+
+Vue.use(HighchartsVue);
 
 const app = createApp(App)
 
