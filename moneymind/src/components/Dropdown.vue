@@ -3,7 +3,7 @@
     <a href="#">
       <IconPerfil />
     </a>
-    <transition name="fade" appear>
+    <transition name="fade" apear>
       <div class="sub-menu" v-if="isOpen">
         <div class="menu-item">
           <a>Sair</a>
@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import IconPerfil from './icons/IconPerfil.vue';
 export default {
   name: 'dropdown',
@@ -34,7 +34,7 @@ export default {
 <style>
 .menu-item .sub-menu {
   position: absolute;
-  width: 66px;
+  width: 5.25rem;
   padding: 8px;
   background-color: #282A30;
   top: calc(100% + 42px);
