@@ -1,4 +1,6 @@
-import { createApp } from 'vue'
+import Vue from 'vue'
+import { createPinia, PiniaVuePlugin } from 'pinia'
+
 import App from './App.vue'
 import router from './router'
 
@@ -8,11 +10,10 @@ import HighchartsVue from "highcharts-vue";
 
 Vue.use(HighchartsVue);
 
-const app = createApp(App)
+Vue.use(PiniaVuePlugin)
 
 new Vue({
   router,
   pinia: createPinia(),
-  vuetify,
   render: (h) => h(App)
 }).$mount('#app')
