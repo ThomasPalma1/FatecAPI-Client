@@ -33,6 +33,7 @@ export default {
 
 <style>
 .menu-item .sub-menu {
+  z-index: 1;
   position: absolute;
   width: 5.25rem;
   padding: 8px;

@@ -15,6 +15,7 @@ export default {
     return {
       chartOptions: {
         chart: {
+          type: "bar",
           borderColor: "#868181",
           borderWidth: 1,
           borderRadius: 5,
