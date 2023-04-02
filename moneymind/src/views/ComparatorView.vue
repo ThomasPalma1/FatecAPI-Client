@@ -1,16 +1,14 @@
 <template>
-  <UsualDropdown title="Services"/>
+  <FilterSearch />
 </template>
 
 <script lang="ts">
-import UsualDropdown from '../components/UsualDropdown.vue';
+import FilterSearch from "@/components/FilterSearch.vue";
 
 export default {
-  name: 'comparator',
+  name: "comparator",
   components: {
-    UsualDropdown
-  }
-}
+    FilterSearch,
+  },
+};
 </script>
-
-<style></style>
