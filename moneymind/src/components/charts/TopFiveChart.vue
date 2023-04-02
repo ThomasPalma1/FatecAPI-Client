@@ -16,6 +16,9 @@ export default {
       chartOptions: {
         chart: {
           type: "bar",
+          borderColor: "#868181",
+          borderWidth: 1,
+          borderRadius: 5,
         },
         title: {
           text: "Top 5 bancos com menores tarifas ao longo de um período",
