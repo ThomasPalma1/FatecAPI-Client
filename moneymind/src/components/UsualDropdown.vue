@@ -17,7 +17,7 @@ export default {
         return {
             isOpen: false,
             options: [
-                { label: 'ANDRE DO CARALHO', value: 'option1' },
+                { label: 'Selecione', value: 'option1' },
                 { label: 'TED', value: 'option2' },
                 { label: 'DOC', value: 'option3' },
                 { label: 'Cambio' , value: 'option4' }

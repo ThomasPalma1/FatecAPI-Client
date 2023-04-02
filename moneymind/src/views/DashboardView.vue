@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <BasicLineCharts />
-    <BasicBarCharts />
-    <BasicColumnCharts />
-    <BasicLineComparator />
+    <TrendChart />
+    <TopFiveChart/>
+    <HigherTariffsChart />
+    <LowerTariffsChart />
   </div>
 </template>
 
@@ -19,17 +19,17 @@
 </style>
 
 <script lang="ts">
-import BasicLineCharts from "@/components/charts/BasicLineCharts.vue";
-import BasicBarCharts from "@/components/charts/BasicBarCharts.vue";
-import BasicColumnCharts from "@/components/charts/BasicColumnCharts.vue";
-import BasicLineComparator from "@/components/charts/BasicLineComparator.vue";
+import TrendChart from "@/components/charts/TrendChart.vue";
+import TopFiveChart from "@/components/charts/TopFiveChart.vue";
+import HigherTariffsChart from "@/components/charts/HigherTariffsChart.vue";
+import LowerTariffsChart from "@/components/charts/LowerTariffsChart.vue";
 
 export default {
   components: {
-    BasicLineCharts,
-    BasicBarCharts,
-    BasicColumnCharts,
-    BasicLineComparator
-  },
+    TrendChart,
+    TopFiveChart,
+    HigherTariffsChart,
+    LowerTariffsChart,
+},
 };
 </script>

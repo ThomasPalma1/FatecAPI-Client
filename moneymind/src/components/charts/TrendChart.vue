@@ -20,12 +20,12 @@ export default {
           borderRadius: 5,
         },
         title: {
-          text: "U.S Solar Employment Growth by Job Category, 2010-2020",
+          text: "Linha do tempo da média de uma tarifa com tendência 2010-2020",
           align: "left",
         },
 
         subtitle: {
-          text: 'Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>',
+          text: 'Fonte: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>',
           align: "left",
         },
 
