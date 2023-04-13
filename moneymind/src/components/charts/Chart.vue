@@ -16,18 +16,26 @@ export default {
       type: Array,
       required: true
     },
+    chartTitle: {
+      type: String,
+      required: true
+    },
+    chartType: {
+      type: String,
+      required: true
+    }
   },
   data() {
     return {
       chartOptions: {
         chart: {
-          type: "column",
-          borderColor: "#868181",
+          type: this.chartType,
           borderWidth: 1,
           borderRadius: 5,
+          borderColor: "#868181",
         },
         title: {
-          text: "Banco com menores tarifas",
+          text: this.chartTitle,
         },
         subtitle: {
           text: 'Fonte: <a href="https://dadosabertos.bcb.gov.br/dataset/tarifas-bancarias-por-segmento-e-por-servicos-em-ordem-decrescente-de-valores/resource/531c6faf-bd89-4710-a5d0-f8671ca17092" target="_blank">Banco Central do Brasil</a>',
@@ -45,7 +53,7 @@ export default {
         yAxis: {
           min: 0,
           title: {
-            text: "Tarifas (reais)",
+            text: "Tarifa (reais)",
           },
         },
         legend: {
@@ -65,6 +73,7 @@ export default {
               style: {
                 fontSize: "13px",
                 fontFamily: "Verdana, sans-serif",
+                textOutline: "none",
               },
             },
           },

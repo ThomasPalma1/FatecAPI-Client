@@ -19,7 +19,7 @@
     "vue": "^2.7.7",
     "vue-property-decorator": "^9.1.2",
     "vue-router": "^3.5.4",
-    "vue-select": "^2.5.0"
+    "vue-toastification": "^1.7.14"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
