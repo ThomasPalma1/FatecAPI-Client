@@ -24,95 +24,27 @@ export default {
     handleOptionChange(event: any) {
       this.selectedOption = event.target.value
       const data = event.target.value;
+      console.log("data", data)
       this.$emit('services-change', data);
     }
   },
-  mounted: function () {
-    axios
+  mounted: async function () {
+   await axios
       .get("/servicos")
       .then((response) => {
         var series_data = [],
           grupos = response.data;
         for (var i = 0; i < grupos.length; i++) {
           series_data.push([grupos[i].codigo, grupos[i].nome]);
+          console.log(series_data)
         }
         this.options = series_data as any;
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+      });
   },
 };
 </script>
 
-<style>
-.selectdiv {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  float: left;
-  min-width: 200px;
-  /* margin: 50px 33%; */
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-}
 
-.selectLabel {
-  color: #f8f8f7;
-  padding: 13px;
-  background: #a09e9c;
-  border: 0px solid #363131;
-  border-radius: 10px 0px 0px 10px;
-}
-
-/* IE11 hide native button (thanks Matt!) */
-select::-ms-expand {
-  display: none;
-}
-
-select:focus {
-  outline: none;
-}
-
-.selectdiv:after {
-  content: "<>";
-  font: 17px "Consolas", monospace;
-  color: #333;
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-  right: 11px;
-  /*Adjust for position however you want*/
-
-  top: 18px;
-  padding: 0 0 2px;
-  border-bottom: 1px solid #999;
-  /*left line */
-
-  position: absolute;
-  pointer-events: none;
-}
-
-.selectdiv select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  /* Add some styling */
-  border-radius: 0px 10px 10px 0px;
-  display: block;
-  width: 100%;
-  max-width: 320px;
-  height: 50px;
-  float: right;
-  margin: 5px 0px;
-  padding: 0px 24px;
-  font-size: 16px;
-  line-height: 1.75;
-  color: #333;
-  background-color: #ffffff;
-  background-image: none;
-  border: 1px solid #cccccc;
-  -ms-word-break: normal;
-  word-break: normal;
-}
-</style>
