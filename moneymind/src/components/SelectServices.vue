@@ -24,7 +24,6 @@ export default {
     handleOptionChange(event: any) {
       this.selectedOption = event.target.value
       const data = event.target.value;
-      console.log("data", data)
       this.$emit('services-change', data);
     }
   },
@@ -36,7 +35,6 @@ export default {
           grupos = response.data;
         for (var i = 0; i < grupos.length; i++) {
           series_data.push([grupos[i].codigo, grupos[i].nome]);
-          console.log(series_data)
         }
         this.options = series_data as any;
       })
