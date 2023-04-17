@@ -7,13 +7,6 @@
     <div>
       <FilterSearch @data-change="dataOnChange" />
     </div>
-    <div class="container" v-if="!isEmpty(data)">
-      <ChartVue
-        :chart-type="chartType"
-        :chart-title="chartTitle"
-        :data="data"
-      />
-    </div>
   </div>
 </template>
 
