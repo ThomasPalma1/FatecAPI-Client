@@ -17,7 +17,6 @@ export default {
   name: "dropdown",
   data() {
     return {
-      options: [],
       selectedOption: "",
       chartType: "",
       chartTitle: "",

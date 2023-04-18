@@ -17,7 +17,7 @@ export default {
     },
     class: {
       type: String,
-      default: "btn btn-primary",
+      default: "btn-primary",
     },
     onClick: {
       type: Function,
@@ -40,7 +40,8 @@ export default {
   margin: 4px 2px;
   cursor: pointer;
   background: #363131;
-  border: 0px solid;
+  border: none;
+  outline: none;
   border-radius: 10px;
   color: #ffffff;
   font-weight: 400;
@@ -50,6 +51,8 @@ export default {
 
 .btn-primary:hover{
   background: #A09E9C;
+  border: none;
+  outline: none;
 }
 
 </style>

@@ -1,3 +1,6 @@
+@import "./base.css";
+
+
 .selectdiv {
   position: absolute;
   display: flex;
@@ -10,15 +13,11 @@
 }
 
 .selectLabel {
-  color: #f8f8f7;
+  color: var(--vt-c-text-dark-1);
   padding: 13px;
-  background: #a09e9c;
-  border: 0px solid #363131;
+  background: var(--color-background-mute);
+  border: 0px solid var(--color-background-mute);
   border-radius: 10px 0px 0px 10px;
-}
-
-select {
-  border-right-width: 24px!important;
 }
 
 /* IE11 hide native button (thanks Matt!) */
@@ -43,7 +42,7 @@ select:focus {
 
   top: 18px;
   padding: 0 0 2px;
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid;
   /*left line */
 
   position: absolute;
@@ -67,8 +66,8 @@ select:focus {
   color: #333;
   background-color: #ffffff;
   background-image: none;
-  border: 1px solid #ffffff;
+  border: 1px solid var(--color-background-mute);;
   -ms-word-break: normal;
   word-break: normal;
+  border-color: #a09e9c;
 }
-

@@ -4,10 +4,10 @@
       <SelectChart @chart-change="chartsOnChange" />
     </div>
     <div class="grid-item">
-      <SelectRequest title="Grupos" url="grupos" @select-change="groupsOnChange" />
+      <SelectGroups @groups-change="groupsOnChange" />
     </div>
     <div class="grid-item">
-      <SelectRequest title="Serviços" url="servicos" @select-change="servicesOnChange" />
+      <SelectServices @services-change="servicesOnChange" />
     </div>
     <div class="grid-item">
       <ButtonSubmit label="Aplicar" :onClick="myFunction" />
@@ -16,7 +16,8 @@
 </template>
 
 <script lang="ts">
-import SelectRequest from "@/components/SelectRequest.vue";
+import SelectGroups from "@/components/SelectGroups.vue";
+import SelectServices from "@/components/SelectServices.vue";
 import ButtonSubmit from "./ButtonSubmit.vue";
 import SelectChart from "./charts/SelectChart.vue";
 import axios from "axios";
@@ -24,7 +25,8 @@ import axios from "axios";
 export default {
   name: "filter",
   components: {
-    SelectRequest,
+    SelectGroups,
+    SelectServices,
     ButtonSubmit,
     SelectChart,
   },
@@ -72,17 +74,10 @@ export default {
             ]);
           }
           this.data = series_data as any;
-
           const data = series_data as any;
           this.$emit("data-change", data, this.chartType, this.chartTitle);
         })
         .catch((err) => {
-          this.$toast.error("Não foi possivel gerar o gráfico", {
-            timeout: 3000,
-            closeOnClick: true,
-            pauseOnHover: false,
-          });
-
           console.log(err);
         });
     },
@@ -102,3 +97,15 @@ export default {
 };
 </script>
 
+<style>
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) 0.5fr; /* Cria 4 colunas com largura igual */
+  grid-gap: 10px; /* Define o espaçamento entre as colunas */
+}
+
+.grid-item {
+  padding: 20px;
+  text-align: center;
+}
+</style>

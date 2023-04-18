@@ -1,21 +1,27 @@
 <template>
   <div class="body">
-    <h1>Visão Geral</h1>
-    <p>Selecione as opções abaixo para gerar o gráfico de acordo com as informações que deseja visualizar</p>
+    <h1 class="title">MoneyMind - Login</h1>
+    <p class="title">
+      O seu login é opcional, mas ativa sugestões especiais para você
+    </p>
     <div>
       <FilterSearch @data-change="dataOnChange" />
     </div>
-    <div class="container" v-if="!isEmpty(data)">
-      <ChartVue :chart-type="chartType" :chart-title="chartTitle" :data="data" />
-    </div>
-    
   </div>
 </template>
 
+<style scoped>
+.body {
+  padding: 1.25rem;
+}
+.title {
+  text-align: center;
+}
+</style>
 
 <script lang="ts">
 import FilterSearch from "@/components/FilterSearch.vue";
-import ChartVue from "@/components/charts/Chart.vue"
+import ChartVue from "@/components/charts/Chart.vue";
 
 export default {
   components: {
@@ -31,7 +37,7 @@ export default {
     return {
       data: [],
       chartType: "",
-      chartTitle: ""
+      chartTitle: "",
     };
   },
   methods: {

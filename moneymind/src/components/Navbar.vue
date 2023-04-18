@@ -14,8 +14,8 @@ import Dropdown from '../components/Dropdown.vue';
 export default {
   name: 'navbar',
   components: {
-    Dropdown
-  }
+    Dropdown,
+}
 }
 </script>
 
@@ -38,7 +38,7 @@ nav {
 }
 
 nav a.router-link-exact-active {
-  color: var(--color-text);
+  color: var(--vt-c-white-mute);
   border-bottom: 4px solid var(--color-border);
 }
 
