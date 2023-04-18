@@ -42,7 +42,11 @@ export default {
   },
   methods: {
     async myFunction() {
-      if (this.selectedGroup === "" || this.selectedService === "" || this.url === "") {
+      if (
+        this.selectedGroup === "" ||
+        this.selectedService === "" ||
+        this.url === ""
+      ) {
         this.$toast.warning("Verifique se todas opções estão selecionadas", {
           timeout: 3000,
           closeOnClick: true,
@@ -74,6 +78,12 @@ export default {
           this.$emit("data-change", data, this.chartType, this.chartTitle);
         })
         .catch((err) => {
+          this.$toast.error("Não foi possivel gerar o gráfico", {
+            timeout: 3000,
+            closeOnClick: true,
+            pauseOnHover: false,
+          });
+
           console.log(err);
         });
     },
@@ -93,15 +103,3 @@ export default {
 };
 </script>
 
-<style>
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr) 0.5fr; /* Cria 4 colunas com largura igual */
-  grid-gap: 10px; /* Define o espaçamento entre as colunas */
-}
-
-.grid-item {
-  padding: 20px;
-  text-align: center;
-}
-</style>

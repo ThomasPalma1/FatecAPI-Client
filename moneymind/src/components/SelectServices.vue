@@ -4,7 +4,7 @@
     <select v-model="selectedOption" @change="handleOptionChange">
       <option value="">Selecione uma opção</option>
       <option v-for="option in options" :value="option[0]">
-        {{ option[1] }}
+        {{ truncatedText(option) }}
       </option>
     </select>
   </div>
@@ -12,6 +12,15 @@
 
 <script lang="ts">
 import axios from "axios";
+import Vue from "vue";
+
+Vue.filter("truncate", function (text: string, length: number) {
+  if (text.length > length) {
+    return text.slice(0, length) + "...";
+  }
+  return text;
+});
+
 export default {
   name: "dropdown",
   data() {
@@ -22,13 +31,18 @@ export default {
   },
   methods: {
     handleOptionChange(event: any) {
-      this.selectedOption = event.target.value
+      this.selectedOption = event.target.value;
       const data = event.target.value;
-      this.$emit('services-change', data);
-    }
+      this.$emit("services-change", data);
+    },
+  truncatedText(option: string[]) {
+      return option[0] === this.selectedOption
+        ? Vue.filter("truncate")(option[1], 30)
+        : option[1];
+    },
   },
   mounted: async function () {
-   await axios
+    await axios
       .get("/servicos")
       .then((response) => {
         var series_data = [],
@@ -39,10 +53,8 @@ export default {
         this.options = series_data as any;
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
       });
   },
 };
 </script>
-
-
