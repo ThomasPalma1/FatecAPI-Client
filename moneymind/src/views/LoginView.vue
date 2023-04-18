@@ -6,12 +6,10 @@
       O seu login é opcional, mas ativa sugestões especiais para você
     </p>
 
-    
-      <div><User label="Email" /></div>
-      <div><User label="Senha" /></div>
-      <div class="botao">
+    <div><User label="Email" /></div>
+    <div><User label="Senha" /></div>
+    <div class="botao">
       <ButtonSubmit label="Acessar" />
-    </div>
     </div>
   </div>
 </template>
@@ -26,9 +24,8 @@
 .space {
   margin-top: 10%;
 }
-.botao{
+.botao {
   margin-left: 50%;
-  
 }
 </style>
 
@@ -39,7 +36,7 @@ import ButtonSubmit from "@/components/ButtonSubmit.vue";
 export default {
   components: {
     User,
-    ButtonSubmit
+    ButtonSubmit,
   },
 };
 </script>

@@ -2,11 +2,11 @@
 :root {
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f8;
-  --vt-c-white-mute: #f2f2f2;
+  --vt-c-white-mute: #b8b8b8;
 
   --vt-c-black: #181818;
   --vt-c-black-soft: #222222;
-  --vt-c-black-mute: #282828;
+  --vt-c-black-mute: #a09e9c;
 
   --vt-c-indigo: #2c3e50;
 
@@ -32,11 +32,12 @@
 
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
+  --color-text2: var(--vt-c-black:);
 
   --section-gap: 160px;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--vt-c-black);
     --color-background-soft: var(--vt-c-black-soft);
@@ -48,7 +49,7 @@
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
   }
-}
+} */
 
 *,
 *::before,
@@ -71,4 +72,36 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.body {
+  padding: 1.25rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 0.9fr repeat(2, minmax(0, 1.1fr)) 0.3fr; /* Cria 4 colunas com largura igual */
+  grid-gap: 8px; /* Define o espaçamento entre as colunas */
+  margin-bottom: 8px;
+}
+
+.grid-container-two {
+  display: grid;
+  grid-template-columns: repeat(2, 0.5fr) 0.2fr;
+  grid-gap: 8px; /* Define o espaçamento entre as colunas */
+  margin-bottom: 8px;
+}
+
+.grid-item {
+  text-align: center;
+}
+
+h1 {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+p {
+  color: var(--color-text);
+  font-weight: 400;
 }
