@@ -85,6 +85,13 @@ body {
   margin-bottom: 8px;
 }
 
+.grid-container-two {
+  display: grid;
+  grid-template-columns: repeat(2, 0.5fr) 0.2fr;
+  grid-gap: 8px; /* Define o espaçamento entre as colunas */
+  margin-bottom: 8px;
+}
+
 .grid-item {
   text-align: center;
 }

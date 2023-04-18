@@ -1,13 +1,14 @@
 <template>
-  <div class="grid-container">
+  <div class="grid-container-two">
     <div class="grid-item">
-      <SelectChart @chart-change="chartsOnChange" />
+      <SelectRequest
+        title="Instituição"
+        url=""
+        @select-change="institutionOnChange"
+      />
     </div>
     <div class="grid-item">
-      <SelectRequest title="Grupos" url="grupos" @select-change="groupsOnChange" />
-    </div>
-    <div class="grid-item">
-      <SelectRequest title="Serviços" url="servicos" @select-change="servicesOnChange" />
+      <SelectRequest title="Pessoa" :data="typePeople" @select-change="peopleOnChange" />
     </div>
     <div class="grid-item">
       <ButtonSubmit label="Aplicar" :onClick="myFunction" />
@@ -30,21 +31,19 @@ export default {
   },
   data() {
     return {
-      selectedGroup: "",
-      selectedService: "",
+      selectedInstitution: "",
+      selectedPeople: "",
       url: "",
-      chartTitle: "",
-      chartType: "",
       data: [],
+      typePeople: [
+        ["Pessoa Fisica", "Pessoa Física"],  
+        ["Pessoa Juridica", "Pessoa Jurídica"],
+      ],
     };
   },
   methods: {
     async myFunction() {
-      if (
-        this.selectedGroup === "" ||
-        this.selectedService === "" ||
-        this.url === ""
-      ) {
+      if (this.selectedInstitution === "" || this.selectedPeople === "") {
         this.$toast.warning("Verifique se todas opções estão selecionadas", {
           timeout: 3000,
           closeOnClick: true,
@@ -53,14 +52,7 @@ export default {
       }
 
       await axios
-        .get(
-          "/tarifasValores/" +
-            this.url +
-            "?grupo=" +
-            this.selectedGroup +
-            "&servico=" +
-            this.selectedService
-        )
+        .get("")
         .then((response) => {
           var series_data = [],
             thedata = response.data;
@@ -72,12 +64,11 @@ export default {
             ]);
           }
           this.data = series_data as any;
-
           const data = series_data as any;
-          this.$emit("data-change", data, this.chartType, this.chartTitle);
+          this.$emit("data-change", data);
         })
         .catch((err) => {
-          this.$toast.error("Não foi possivel gerar o gráfico", {
+          this.$toast.error("Não foi possivel gerar o painel", {
             timeout: 3000,
             closeOnClick: true,
             pauseOnHover: false,
@@ -87,18 +78,12 @@ export default {
         });
     },
 
-    groupsOnChange(data: string) {
-      this.selectedGroup = data;
+    institutionOnChange(data: string) {
+      this.selectedInstitution = data;
     },
-    servicesOnChange(data: string) {
-      this.selectedService = data;
-    },
-    chartsOnChange(url: string, title: string, type: string) {
-      this.url = url;
-      this.chartTitle = title;
-      this.chartType = type;
+    peopleOnChange(data: string) {
+      this.selectedPeople = data;
     },
   },
 };
 </script>
-
