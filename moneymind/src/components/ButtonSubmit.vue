@@ -17,7 +17,7 @@ export default {
     },
     class: {
       type: String,
-      default: "btn btn-primary",
+      default: "btn-primary",
     },
     onClick: {
       type: Function,
