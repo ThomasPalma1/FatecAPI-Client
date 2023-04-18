@@ -3,23 +3,22 @@
     <h1>Visão Geral</h1>
     <p>Selecione as opções abaixo para gerar o gráfico de acordo com as informações que deseja visualizar</p>
     <div>
-      <FilterSearch @data-change="dataOnChange" />
+      <FilterDashboard @data-change="dataOnChange" />
     </div>
     <div class="container" v-if="!isEmpty(data)">
       <ChartVue :chart-type="chartType" :chart-title="chartTitle" :data="data" />
     </div>
-    
   </div>
 </template>
 
 
 <script lang="ts">
-import FilterSearch from "@/components/FilterSearch.vue";
+import FilterDashboard from "@/components/FilterDashboard.vue";
 import ChartVue from "@/components/charts/Chart.vue"
 
 export default {
   components: {
-    FilterSearch,
+    FilterDashboard,
     ChartVue,
   },
   computed: {

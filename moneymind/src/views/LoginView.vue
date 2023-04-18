@@ -5,7 +5,7 @@
       O seu login é opcional, mas ativa sugestões especiais para você
     </p>
     <div>
-      <FilterSearch @data-change="dataOnChange" />
+      <FilterDashboard @data-change="dataOnChange" />
     </div>
   </div>
 </template>
@@ -20,12 +20,12 @@
 </style>
 
 <script lang="ts">
-import FilterSearch from "@/components/FilterSearch.vue";
+import FilterDashboard from "@/components/FilterDashboard.vue";
 import ChartVue from "@/components/charts/Chart.vue";
 
 export default {
   components: {
-    FilterSearch,
+    FilterDashboard,
     ChartVue,
   },
   computed: {

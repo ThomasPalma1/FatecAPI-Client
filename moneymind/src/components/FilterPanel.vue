@@ -1,11 +1,7 @@
 <template>
   <div class="grid-container-two">
     <div class="grid-item">
-      <SelectRequest
-        title="Instituição"
-        url=""
-        @select-change="institutionOnChange"
-      />
+      <SelectRequest title="Instituição" url="" @select-change="institutionOnChange" />
     </div>
     <div class="grid-item">
       <SelectRequest title="Pessoa" :data="typePeople" @select-change="peopleOnChange" />

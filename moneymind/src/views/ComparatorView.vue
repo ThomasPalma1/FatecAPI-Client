@@ -1,14 +1,14 @@
 <template>
-  <FilterSearch />
+  <FilterComparator />
 </template>
 
 <script lang="ts">
-import FilterSearch from "@/components/FilterSearch.vue";
+import FilterComparator from "@/components/FilterComparator.vue";
 
 export default {
   name: "comparator",
   components: {
-    FilterSearch,
+    FilterComparator,
   },
 };
 </script>
