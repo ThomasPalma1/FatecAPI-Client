@@ -1,11 +1,17 @@
 <template>
   <div class="body">
+    <div class="space"></div>
     <h1 class="title">MoneyMind - Login</h1>
     <p class="title">
       O seu login é opcional, mas ativa sugestões especiais para você
     </p>
-    <div>
-      <FilterSearch @data-change="dataOnChange" />
+
+    
+      <div><User label="Email" /></div>
+      <div><User label="Senha" /></div>
+      <div class="botao">
+      <ButtonSubmit label="Acessar" />
+    </div>
     </div>
   </div>
 </template>
@@ -17,35 +23,23 @@
 .title {
   text-align: center;
 }
+.space {
+  margin-top: 10%;
+}
+.botao{
+  margin-left: 50%;
+  
+}
 </style>
 
 <script lang="ts">
-import FilterSearch from "@/components/FilterSearch.vue";
-import ChartVue from "@/components/charts/Chart.vue";
+import User from "@/components/User.vue";
+import ButtonSubmit from "@/components/ButtonSubmit.vue";
 
 export default {
   components: {
-    FilterSearch,
-    ChartVue,
-  },
-  computed: {
-    isEmpty() {
-      return (arr: never[]) => arr.length === 0;
-    },
-  },
-  data() {
-    return {
-      data: [],
-      chartType: "",
-      chartTitle: "",
-    };
-  },
-  methods: {
-    dataOnChange(data: [], type: string, title: string) {
-      this.data = data;
-      this.chartType = type;
-      this.chartTitle = title;
-    },
+    User,
+    ButtonSubmit
   },
 };
 </script>
