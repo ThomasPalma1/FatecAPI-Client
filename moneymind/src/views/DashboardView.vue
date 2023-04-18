@@ -12,11 +12,6 @@
   </div>
 </template>
 
-<style scoped>
-.body {
-  padding: 1.25rem;
-}
-</style>
 
 <script lang="ts">
 import FilterSearch from "@/components/FilterSearch.vue";
