@@ -6,8 +6,11 @@
     <transition name="fade" apear>
       <div class="sub-menu" v-if="isOpen">
         <div class="menu-item">
-          <a>Login/Cadastro</a>
-          <a>Convidado</a>
+          <nav>
+            <div>
+              <router-link to="/login">Login/Cadastro</router-link>
+            </div>
+          </nav>
         </div>
       </div>
     </transition>
