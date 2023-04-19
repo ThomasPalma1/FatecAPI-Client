@@ -1,6 +1,12 @@
 <template>
   <nav>
-    <img alt="MM logo" class="logo" src="@/assets/logo.svg" width="200" height="100" />
+    <img
+      alt="MM logo"
+      class="logo"
+      src="@/assets/logo.svg"
+      width="200"
+      height="100"
+    />
     <router-link to="/">Dashboard</router-link>
     <router-link to="/panel">Painel</router-link>
     <router-link to="/comparator">Comparador</router-link>
@@ -9,14 +15,14 @@
 </template>
 
 <script lang="ts">
-import Dropdown from '../components/Dropdown.vue';
+import Dropdown from "../components/Dropdown.vue";
 
 export default {
-  name: 'navbar',
+  name: "navbar",
   components: {
     Dropdown,
-}
-}
+  },
+};
 </script>
 
 <style>
