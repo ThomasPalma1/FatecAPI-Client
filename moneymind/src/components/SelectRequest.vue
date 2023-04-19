@@ -33,11 +33,15 @@ export default {
     },
     data: {
       type: Object,
-    }
+    },
+    push: {
+      type: String,
+    },
   },
   data() {
     return {
       options: [],
+      grupos: [],
       selectedOption: "",
     };
   },
@@ -58,11 +62,21 @@ export default {
         .then((response) => {
           var series_data = [],
             grupos = response.data;
-          for (var i = 0; i < grupos.length; i++) {
-            series_data.push([grupos[i].codigo, grupos[i].nome]);
+          this.grupos = grupos;
+
+          if (this.push === "codigoNome") {
+            for (var i = 0; i < grupos.length; i++) {
+              series_data.push([grupos[i].codigo, grupos[i].nome]);
+            }
+          } else if (this.push === "razaoSocialCnpj") {
+            for (var i = 0; i < grupos.length && i < 100; i++) {
+              series_data.push([
+                grupos[i].cnpj,
+                grupos[i].razao_social,
+              ]);
+            }
           }
           this.options = series_data as any;
-          console.log(this.options);
         })
         .catch((err) => {
           console.log(err);
@@ -70,7 +84,6 @@ export default {
     },
     getDataProps() {
       this.options = this.data as [];
-      console.log(this.options)
     },
     getTypeData() {
       if (this.url) {

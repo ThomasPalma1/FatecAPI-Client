@@ -1,10 +1,19 @@
 <template>
   <div class="grid-container-two">
     <div class="grid-item">
-      <SelectRequest title="Instituição" url="" @select-change="institutionOnChange" />
+      <SelectRequest
+        title="Instituição"
+        url="tarifasValores"
+        push="razaoSocialCnpj"
+        @select-change="institutionOnChange"
+      />
     </div>
     <div class="grid-item">
-      <SelectRequest title="Pessoa" :data="typePeople" @select-change="peopleOnChange" />
+      <SelectRequest
+        title="Pessoa"
+        :data="typePeople"
+        @select-change="peopleOnChange"
+      />
     </div>
     <div class="grid-item">
       <ButtonSubmit label="Aplicar" :onClick="myFunction" />
@@ -29,11 +38,11 @@ export default {
     return {
       selectedInstitution: "",
       selectedPeople: "",
-      url: "",
+      selectedCnpj: "",
       data: [],
       typePeople: [
-        ["Pessoa Fisica", "Pessoa Física"],  
-        ["Pessoa Juridica", "Pessoa Jurídica"],
+        ["F", "Pessoa Física"],
+        ["J", "Pessoa Jurídica"],
       ],
     };
   },
@@ -48,20 +57,18 @@ export default {
       }
 
       await axios
-        .get("")
+        .get(
+          "/tarifasInstituicao/buscarTarifasInstituicao" +
+            "?cnpj=" +
+            this.selectedCnpj +
+            "&tipoPessoa=" +
+            this.selectedPeople
+        )
         .then((response) => {
-          var series_data = [],
-            thedata = response.data;
 
-          for (var i = 0; i < thedata.length; i++) {
-            series_data.push([
-              thedata[i].razao_social,
-              parseFloat(thedata[i].valor_maximo),
-            ]);
-          }
-          this.data = series_data as any;
-          const data = series_data as any;
-          this.$emit("data-change", data);
+          this.data = response.data;
+
+          this.$emit("data-change", this.data);
         })
         .catch((err) => {
           this.$toast.error("Não foi possivel gerar o painel", {
@@ -74,11 +81,13 @@ export default {
         });
     },
 
-    institutionOnChange(data: string) {
-      this.selectedInstitution = data;
+    institutionOnChange(razaoSocial: string, cnpj: string) {
+      this.selectedInstitution = razaoSocial;
+      this.selectedCnpj = cnpj;
     },
     peopleOnChange(data: string) {
       this.selectedPeople = data;
+      console.log(this.selectedPeople);
     },
   },
 };

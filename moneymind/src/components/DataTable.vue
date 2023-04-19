@@ -55,6 +55,12 @@ interface Row {
 }
 
 export default {
+  props: {
+    data: {
+      type: Array,
+      required: true
+    },
+  },
   data() {
     return {
       searchQuery: "",
@@ -67,19 +73,7 @@ export default {
       } as {
         [key in keyof Row]: number;
       },
-      data: [
-        { name: "João", email: "joao@example.com", age: 25 },
-        { name: "Maria", email: "maria@example.com", age: 30 },
-        { name: "José", email: "jose@example.com", age: 20 },
-        { name: "Ana", email: "ana@example.com", age: 35 },
-        { name: "Pedro", email: "pedro@example.com", age: 28 },
-        { name: "Paula", email: "paula@example.com", age: 22 },
-        { name: "Lucas", email: "lucas@example.com", age: 27 },
-        { name: "Mariana", email: "mariana@example.com", age: 33 },
-        { name: "Fernando", email: "fernando@example.com", age: 24 },
-        { name: "Camila", email: "camila@example.com", age: 29 },
-        { name: "Camila", email: "camila@example.com", age: 29 },
-      ] as Row[],
+      data: this.data as Row[],
     };
   },
   computed: {
@@ -191,8 +185,11 @@ interface Row {
   background-color: #f0f0f0;
 }
 
-.table tbody tr:last-child td {
+.table tbody tr:last-child td:first-child {
   border-bottom-left-radius: 10px;
+}
+
+.table tbody tr:last-child td:last-child {
   border-bottom-right-radius: 10px;
 }
 
@@ -244,3 +241,4 @@ interface Row {
   cursor: not-allowed;
 }
 </style>
+
