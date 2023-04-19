@@ -1,15 +1,15 @@
 <template>
-  <button :disabled="disabled" class="btn-primary" @click="buttonClicked">
-    {{ label }}
+  <button :disabled="disabled" class="btn-secondary" @click="buttonClicked">
+    {{ label1 }}
   </button>
 </template>
 
 <script lang="ts">
 export default {
   props: {
-    label: {
+    label1: {
       type: String,
-      default: "Enviar",
+      default: "Login",
     },
     disabled: {
       type: Boolean,
@@ -33,20 +33,22 @@ export default {
 </script>
 
 <style>
-.btn-primary {
-  height: 50px;
+.btn-secondary {
+  height: 60px;
+  width: 300px;
   padding: 10px 20px;
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  background: #363131;
+  background: #f4bf35;
   border: none;
   outline: none;
   border-radius: 10px;
-  color: #ffffff;
+  color: #000000;
   font-weight: 400;
   letter-spacing: 1px;
   transition: 0.5s;
+  margin-left: 25%;
 }
 
 .btn-primary:hover {

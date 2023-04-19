@@ -1,48 +1,61 @@
 <template>
-  <div>
-    <h2>Sign Up</h2>
-    <form @submit.prevent="submitForm">
-      <label for="name">Name</label>
-      <input type="text" id="name" v-model="name" required />
-      <label for="email">Email</label>
-      <input type="email" id="email" v-model="email" required />
-      <label for="password">Password</label>
-      <input type="password" id="password" v-model="password" required />
-      <button type="submit">Sign Up</button>
-    </form>
+  <div class="body">
+    <div class="space2">
+      <p>
+        <ButtonCadastroLogin label1="Login" class="botaoc" />
+        <ButtonCadastroLogin label1="Cadastro" class="botaol" />
+      </p>
+    </div>
+    <div class="space">
+      <h1 class="title">MoneyMind - Cadastro</h1>
+      <p class="title">
+        O seu cadastro é opcional, mas ativa sugestões especiais para você
+      </p>
+
+      <div><User label="Email" /></div>
+      <div><User label="Senha" /></div>
+      <div><User label="Confirmar a senha" /></div>
+      <div class="botao">
+        <ButtonSubmit label="Cadastrar" />
+      </div>
+    </div>
   </div>
 </template>
 
+<style scoped>
+.body {
+  padding: 1.25rem;
+}
+.title {
+  text-align: center;
+}
+.space {
+  margin-top: 5%;
+}
+.space2 {
+  margin-top: 2%;
+}
+.botao {
+  margin-left: 50%;
+}
+.botaoc {
+  background-color: aliceblue;
+}
+.botaol {
+  margin-left: 12%;
+}
+</style>
+
 <script lang="ts">
-import axios from "axios";
+import User from "@/components/User.vue";
+import ButtonSubmit from "@/components/ButtonSubmit.vue";
+import ButtonCadastroLogin from "@/components/ButtonCadastroLogin.vue";
 
 export default {
-  data() {
-    return {
-      name: "",
-      email: "",
-      password: "",
-    };
-  },
-  methods: {
-    submitForm() {
-      const newUser = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-      };
-
-      axios
-        .post("http://your-api-endpoint.com/users", newUser)
-        .then((response) => {
-          console.log(response.data);
-          // Handle successful response from API
-        })
-        .catch((error) => {
-          console.log(error.response.data);
-          // Handle error response from API
-        });
-    },
+  components: {
+    User,
+    ButtonSubmit,
+    ButtonCadastroLogin,
   },
 };
 </script>
