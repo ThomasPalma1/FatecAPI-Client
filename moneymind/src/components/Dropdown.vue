@@ -6,7 +6,8 @@
     <transition name="fade" apear>
       <div class="sub-menu" v-if="isOpen">
         <div class="menu-item">
-          <a>Sair</a>
+          <a>Login/Cadastro</a>
+          <a>Convidado</a>
         </div>
       </div>
     </transition>
@@ -14,9 +15,9 @@
 </template>
 
 <script lang="ts">
-import IconPerfil from './icons/IconPerfil.vue';
+import IconPerfil from "./icons/IconPerfil.vue";
 export default {
-  name: 'dropdown',
+  name: "dropdown",
   props: {
     title: String,
   },
@@ -35,11 +36,11 @@ export default {
 .menu-item .sub-menu {
   z-index: 1;
   position: absolute;
-  width: 5.25rem;
-  padding: 8px;
-  background-color: #282A30;
+  width: 12.25rem;
+  padding: 6px;
+  background-color: #282a30;
   top: calc(100% + 42px);
-  left: 50%;
+  left: 30%;
   transform: translateX(-50%);
 }
 
