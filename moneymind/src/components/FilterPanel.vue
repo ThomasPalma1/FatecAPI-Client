@@ -71,23 +71,17 @@ export default {
           this.$emit("data-change", this.data);
         })
         .catch((err) => {
-          this.$toast.error("Não foi possivel gerar o painel", {
-            timeout: 3000,
-            closeOnClick: true,
-            pauseOnHover: false,
-          });
-
+          
           console.log(err);
         });
     },
 
-    institutionOnChange(razaoSocial: string, cnpj: string) {
+    institutionOnChange(cnpj: string, razaoSocial: string) {
       this.selectedInstitution = razaoSocial;
-      this.selectedCnpj = cnpj;
+      this.selectedCnpj = cnpj;     
     },
     peopleOnChange(data: string) {
-      this.selectedPeople = data;
-      console.log(this.selectedPeople);
+      this.selectedPeople = data;  
     },
   },
 };

@@ -4,10 +4,10 @@
       <SelectChart @chart-change="chartsOnChange" />
     </div>
     <div class="grid-item">
-      <SelectRequest title="Grupos" url="grupos" @select-change="groupsOnChange" />
+      <SelectRequest title="Grupos" url="grupos" push="grupo" @select-change="groupsOnChange" />
     </div>
     <div class="grid-item">
-      <SelectRequest title="Serviços" url="servicos" @select-change="servicesOnChange" />
+      <SelectRequest title="Serviços" url="servicos" push="servico" @select-change="servicesOnChange"/>
     </div>
     <div class="grid-item">
       <ButtonSubmit label="Aplicar" :onClick="myFunction" />

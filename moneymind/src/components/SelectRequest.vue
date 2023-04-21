@@ -48,8 +48,12 @@ export default {
   methods: {
     handleOptionChange(event: any) {
       this.selectedOption = event.target.value;
-      const data = event.target.value;
-      this.$emit("select-change", data);
+      const option = this.options.find((option) => option[0] === event.target.value);
+      
+      const value = option![0];
+      const text = option![1];
+
+      this.$emit("select-change", value, text);
     },
     truncatedText(option: string[]) {
       return option[0] === this.selectedOption
@@ -62,7 +66,7 @@ export default {
         .then((response) => {
           var series_data = [],
             grupos = response.data;
-          this.grupos = grupos;
+          this.options = grupos;
 
           if (this.push === "codigoNome") {
             for (var i = 0; i < grupos.length; i++) {
@@ -70,12 +74,14 @@ export default {
             }
           } else if (this.push === "razaoSocialCnpj") {
             for (var i = 0; i < grupos.length && i < 100; i++) {
-              series_data.push([
-                grupos[i].cnpj,
-                grupos[i].razao_social,
-              ]);
+              series_data.push([grupos[i].cnpj, grupos[i].razao_social]);
+            }
+          } else if (this.push === "grupo" || this.push === "servico") {
+            for (var i = 0; i < grupos.length && i < 100; i++) {
+              series_data.push([grupos[i].codigo, grupos[i].nome]);
             }
           }
+
           this.options = series_data as any;
         })
         .catch((err) => {
