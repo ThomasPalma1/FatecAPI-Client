@@ -33,19 +33,27 @@ export default {
     },
     data: {
       type: Object,
-    }
+    },
+    push: {
+      type: String,
+    },
   },
   data() {
     return {
       options: [],
+      grupos: [],
       selectedOption: "",
     };
   },
   methods: {
     handleOptionChange(event: any) {
       this.selectedOption = event.target.value;
-      const data = event.target.value;
-      this.$emit("select-change", data);
+      const option = this.options.find((option) => option[0] === event.target.value);
+      
+      const value = option![0];
+      const text = option![1];
+
+      this.$emit("select-change", value, text);
     },
     truncatedText(option: string[]) {
       return option[0] === this.selectedOption
@@ -58,11 +66,23 @@ export default {
         .then((response) => {
           var series_data = [],
             grupos = response.data;
-          for (var i = 0; i < grupos.length; i++) {
-            series_data.push([grupos[i].codigo, grupos[i].nome]);
+          this.options = grupos;
+
+          if (this.push === "codigoNome") {
+            for (var i = 0; i < grupos.length; i++) {
+              series_data.push([grupos[i].codigo, grupos[i].nome]);
+            }
+          } else if (this.push === "razaoSocialCnpj") {
+            for (var i = 0; i < grupos.length && i < 100; i++) {
+              series_data.push([grupos[i].cnpj, grupos[i].razao_social]);
+            }
+          } else if (this.push === "grupo" || this.push === "servico") {
+            for (var i = 0; i < grupos.length && i < 100; i++) {
+              series_data.push([grupos[i].codigo, grupos[i].nome]);
+            }
           }
+
           this.options = series_data as any;
-          console.log(this.options);
         })
         .catch((err) => {
           console.log(err);
@@ -70,7 +90,6 @@ export default {
     },
     getDataProps() {
       this.options = this.data as [];
-      console.log(this.options)
     },
     getTypeData() {
       if (this.url) {

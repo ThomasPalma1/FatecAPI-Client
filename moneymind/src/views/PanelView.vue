@@ -2,9 +2,9 @@
   <div class="body">
     <h1>Painel de tarifas</h1>
     <p>Selecione as opções abaixo para visualizar as taxas de serviço</p>
-    <FilterPanel />
+    <FilterPanel @data-change="dataOnChange"/>
     <div>
-      <DataTable />
+      <DataTable :data="data"/>
     </div>
   </div>
 </template>
@@ -17,6 +17,16 @@ export default {
   components: {
     DataTable,
     FilterPanel,
+  },
+  data() {
+    return {
+      data: [],
+    };
+  },
+  methods: {
+    dataOnChange(data: []) {
+      this.data = data;
+    },
   },
 };
 </script>

@@ -4,6 +4,7 @@ import DashboardView from "@/views/DashboardView.vue";
 import PanelView from "@/views/PanelView.vue";
 import ComparatorView from "@/views/ComparatorView.vue";
 import LoginView from "@/views/LoginView.vue";
+import SignupView from "@/views/SignupView.vue";
 
 Vue.use(VueRouter);
 
@@ -30,6 +31,11 @@ const router = new VueRouter({
       path: "/login",
       name: "login",
       component: LoginView,
+    },
+    {
+      path: "/signup",
+      name: "signup",
+      component: SignupView,
     },
   ],
 });
