@@ -5,6 +5,5 @@ services:
       context: ./moneymind
       dockerfile: Dockerfile
     ports:
-      - '8080:8080'
-    volumes:
-      - ./moneymind:/app
+      - '51730:5173'
+    restart: always

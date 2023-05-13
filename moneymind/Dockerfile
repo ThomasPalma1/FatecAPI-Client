@@ -1,8 +1,8 @@
-# Imagem base
-FROM node:14.17.0-alpine
-WORKDIR /app
-COPY package*.json ./
+FROM node:18
+LABEL maintainer="Thomas Palma"
+WORKDIR /moneymind/
+COPY . /moneymind/
 RUN npm install
-COPY . .
-RUN npm run build
-CMD [ "npm", "run", "serve" ]
+RUN npm install -g @vue/cli
+EXPOSE 5173
+CMD [ "npm", "run", "dev" ]
