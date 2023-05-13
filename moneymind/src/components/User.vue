@@ -1,10 +1,8 @@
 <template>
   <div class="main">
-    <div class="login">
+    <div class="input-container">
       <label for="username">{{ label }}</label>
-    </div>
-    <div>
-      <input class="iptlogin" />
+      <input class="iptlogin" :type="isPassword ? 'password' : 'text'" />
     </div>
   </div>
 </template>
@@ -17,26 +15,37 @@ export default {
       default: "Email",
     },
   },
+  computed: {
+    isPassword() {
+      const lowercaseLabel = this.label.toLowerCase();
+      return lowercaseLabel === "senha" || lowercaseLabel.includes("confirmar a senha");
+    },
+  },
 };
 </script>
 
 <style>
 .main {
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .login {
   height: 25px;
   font-size: 16px;
   color: black;
   font-weight: 400;
-  margin-left: 25%;
-  margin-right: 25%;
 }
 .iptlogin {
   width: 783px;
   height: 55px;
-  margin-left: 25%;
-  margin-right: 25%;
   border-radius: 10px;
 }
 </style>

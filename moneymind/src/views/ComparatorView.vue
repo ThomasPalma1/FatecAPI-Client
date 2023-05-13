@@ -3,7 +3,7 @@
     <h1>Comparador de serviços</h1>
     <p>Selecione as opções abaixo para visualizar e comparar os serviços</p>
     <FilterComparator />
-    <div class="container" >
+    <div class="container" v-if="!isEmpty(data)">
       <ChartComparator :chart-type="chartType" :chart-title="chartTitle" :data="data" />
     </div>
   </div>
@@ -19,6 +19,11 @@ export default {
     FilterComparator,
     ChartComparator
 },
+computed: {
+    isEmpty() {
+      return (arr: never[]) => arr.length === 0;
+    },
+  },
   data() {
     return {
       data: [],

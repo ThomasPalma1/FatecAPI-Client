@@ -1,6 +1,8 @@
 <template>
   <button :disabled="disabled" class="btn-secondary" @click="buttonClicked">
-    {{ label1 }}
+    <router-link to="/login">
+      {{ label1 }}
+    </router-link>
   </button>
 </template>
 
@@ -21,7 +23,7 @@ export default {
     },
     onClick: {
       type: Function,
-      default: () => {},
+      default: () => { },
     },
   },
   methods: {
@@ -33,6 +35,19 @@ export default {
 </script>
 
 <style>
+button a.router-link-exact-active {
+  color: black;
+}
+
+button a.router-link-exact-active:hover {
+  background-color: transparent;
+}
+
+button a {
+  display: inline-block;
+  padding: 0 1rem;
+}
+
 .btn-secondary {
   height: 60px;
   width: 300px;
@@ -48,7 +63,7 @@ export default {
   font-weight: 400;
   letter-spacing: 1px;
   transition: 0.5s;
-  margin-left: 25%;
+  margin-left: 19%;
 }
 
 .btn-primary:hover {
