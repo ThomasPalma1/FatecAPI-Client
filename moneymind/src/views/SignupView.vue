@@ -3,7 +3,7 @@
     <div class="space2">
       <p>
         <ButtonCadastroLogin label1="Login" class="botaoc" />
-        <ButtonCadastroLogin label1="Cadastro" class="botaol" />
+        <ButtonCadastro label1="Cadastro" class="botaol" />
       </p>
     </div>
     <div class="space">
@@ -30,31 +30,31 @@
   text-align: center;
 }
 .space {
-  margin-top: 5%;
-}
-.space2 {
-  margin-top: 2%;
+  margin-top: 3%;
 }
 .botao {
-  margin-left: 50%;
+  display: flex;
+  justify-content: center;
 }
 .botaoc {
   background-color: aliceblue;
 }
 .botaol {
-  margin-left: 12%;
+  margin-left: 14%;
 }
 </style>
 
 <script lang="ts">
 import User from "@/components/User.vue";
 import ButtonSubmit from "@/components/ButtonSubmit.vue";
+import ButtonCadastro from "@/components/ButtonCadastro.vue"
 import ButtonCadastroLogin from "@/components/ButtonCadastroLogin.vue";
 
 export default {
   components: {
     User,
     ButtonSubmit,
+    ButtonCadastro,
     ButtonCadastroLogin,
   },
 };

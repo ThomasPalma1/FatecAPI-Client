@@ -3,15 +3,12 @@
     <div class="space2">
       <p>
         <ButtonCadastroLogin label1="Login" />
-        <ButtonCadastroLogin label1="Cadastro" class="botaoc" />
+        <ButtonCadastro label1="Cadastro" class="botaoc" />
       </p>
     </div>
     <div class="space">
       <h1 class="title">MoneyMind - Login</h1>
-      <p class="title">
-        O seu login é opcional, mas ativa sugestões especiais para você
-      </p>
-
+      <p class="title">O seu login é opcional, mas ativa sugestões especiais para você</p>
       <div><User label="Email" /></div>
       <div><User label="Senha" /></div>
       <div class="botao">
@@ -29,29 +26,30 @@
   text-align: center;
 }
 .space {
-  margin-top: 5%;
+  margin-top: 3%;
 }
-.space2 {
-  margin-top: 2%;
-}
+
 .botao {
-  margin-left: 50%;
+  display: flex;
+  justify-content: center;
 }
 .botaoc {
   background-color: aliceblue;
-  margin-left: 12%;
+  margin-left: 14%;
 }
 </style>
 
 <script lang="ts">
 import User from "@/components/User.vue";
 import ButtonSubmit from "@/components/ButtonSubmit.vue";
+import ButtonCadastro from "@/components/ButtonCadastro.vue"
 import ButtonCadastroLogin from "@/components/ButtonCadastroLogin.vue";
 
 export default {
   components: {
     User,
     ButtonSubmit,
+    ButtonCadastro,
     ButtonCadastroLogin,
   },
 };

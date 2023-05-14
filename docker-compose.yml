@@ -1,0 +1,9 @@
+version: '3'
+services:
+  app:
+    build:
+      context: ./moneymind
+      dockerfile: Dockerfile
+    ports:
+      - '51730:5173'
+    restart: always
