@@ -1,11 +1,9 @@
 <template>
   <div>
+    <p id="menorTarifa">Menor tarifa desse serviço: BANCO ITAUCARD S.A. - R$ 40.0</p>
     <form @submit.prevent="onSearch">
       <div class="search-container">
-        <RowsPerPageSelectorVue
-          :selected-option="pageSize"
-          @option-changed="onRowsPerPageChanged"
-        />
+        <RowsPerPageSelectorVue :selected-option="pageSize" @option-changed="onRowsPerPageChanged" />
         <input v-model="searchQuery" id="myInput" placeholder="Buscar" />
       </div>
     </form>
@@ -44,11 +42,9 @@
       </tbody>
     </table>
     <div class="search-container">
-      <label
-        >Mostrando {{ (currentPage - 1) * pageSize + 1 }} a
+      <label>Mostrando {{ (currentPage - 1) * pageSize + 1 }} a
         {{ Math.min(currentPage * pageSize, data.length) }}
-        de {{data.length }} entradas</label
-      >
+        de {{ data.length }} entradas</label>
       <div class="pagination">
         <button :disabled="currentPage === 1" @click="currentPage--">
           Anterior
@@ -112,6 +108,10 @@ export default {
         });
       }
       console.log(data)
+      const menorTarifaElement = document.getElementById("menorTarifa");
+      if (menorTarifaElement) {
+        menorTarifaElement.style.display = "block";
+      }
       return data;
     },
     filteredData(): Row[] {
@@ -193,12 +193,15 @@ export default {
   padding: 1.2rem;
   vertical-align: bottom;
 }
+
 .table thead th:first-child {
   border-radius: 4px 0 0 0;
 }
+
 .table thead th:last-child {
   border-radius: 0 4px 0 0;
 }
+
 .table tbody tr {
   border: 1px solid #e7e7e7;
 }
@@ -208,10 +211,12 @@ export default {
   font-weight: 400;
   border: 1px solid #e7e7e7;
 }
+
 .table tbody tr:hover {
   background-color: var(--vt-c-text-dark-2);
   cursor: pointer;
 }
+
 .table tbody tr:nth-child(even) {
   background-color: #f0f0f0;
 }
@@ -270,5 +275,8 @@ export default {
 .pagination button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+#menorTarifa {
+  display: none;
 }
 </style>

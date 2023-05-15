@@ -2,40 +2,30 @@
   <div class="body">
     <h1>Comparador de serviços</h1>
     <p>Selecione as opções abaixo para visualizar e comparar os serviços</p>
-    <FilterComparator />
-    <div class="container" v-if="!isEmpty(data)">
-      <ChartComparator :chart-type="chartType" :chart-title="chartTitle" :data="data" />
+    <FilterComparator @data-change="dataOnChange"/>
+    <div>
+      <DataTableComparator :data="data" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import FilterComparator from "@/components/FilterComparator.vue";
-import ChartComparator from "@/components/charts/ChartComparator.vue";
+import DataTableComparator from "@/components/DataTableComparator.vue";
 
 export default {
   name: "comparator",
   components: {
     FilterComparator,
-    ChartComparator
-},
-computed: {
-    isEmpty() {
-      return (arr: never[]) => arr.length === 0;
-    },
-  },
-  data() {
+    DataTableComparator
+}, data(){
     return {
       data: [],
-      chartType: "",
-      chartTitle: ""
     };
   },
   methods: {
-    dataOnChange(data: [], type: string, title: string) {
+    dataOnChange(data: []) {
       this.data = data;
-      this.chartType = type;
-      this.chartTitle = title;
     },
   },
 };
