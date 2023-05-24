@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p id="menorTarifa">Menor tarifa desse serviço: BANCO ITAUCARD S.A. - R$ 40.0</p>
+    <p id="menorTarifa" v-if="lowerTariff.length > 0 && instituicao.length > 0">
+      Menor tarifa do serviço de {{ lowerTariff[0].nomeServico }}: <span class="service-text">{{ instituicao[0].nome }} - R$ {{ lowerTariff[0].valorMaximo }}</span> 
+    </p>
     <form @submit.prevent="onSearch">
       <div class="search-container">
         <RowsPerPageSelectorVue :selected-option="pageSize" @option-changed="onRowsPerPageChanged" />
@@ -59,6 +61,7 @@
 </template>
 
 <script lang="ts">
+import axios from "axios";
 import RowsPerPageSelectorVue from "./RowsPerPageSelector.vue";
 import IconFilter from "./icons/IconFilter.vue";
 
@@ -77,10 +80,36 @@ interface Row {
   periodicidade: string;
 }
 
+interface LowerTariff {
+  [key: string]: string | number;
+
+  id: number;
+  servico: string;
+  nomeServico: string;
+  tipoPessoa: string;
+  cnpj: number;
+  unidade: string;
+  dataVigencia: string;
+  valorMaximo: number;
+  tipoValor: string;
+  periodicidade: string;
+}
+
+interface instituicao {
+  id: number;
+  nome: string;
+  cnpj: number;
+  codigoGrupo: number;
+}
+
 export default {
   props: {
     data: {
       type: Array,
+      required: true,
+    },
+    lowerTariff: {
+      type: Array as () => LowerTariff[],
       required: true,
     },
   },
@@ -88,6 +117,8 @@ export default {
     return {
       filterKey: "",
       sortKey: "",
+      instituicao: [] as instituicao[],
+      selectedCnpj: 0,
       sortOrders: {} as { [key: string]: number },
       searchQuery: "",
       currentPage: 1,
@@ -106,11 +137,6 @@ export default {
           b = b[sortKey];
           return (a === b ? 0 : a > b ? 1 : -1) * order;
         });
-      }
-      console.log(data)
-      const menorTarifaElement = document.getElementById("menorTarifa");
-      if (menorTarifaElement) {
-        menorTarifaElement.style.display = "block";
       }
       return data;
     },
@@ -155,13 +181,37 @@ export default {
       console.log(event);
       this.currentPage = 1;
     },
+    loadData() {
+      if (this.lowerTariff.length > 0) {
+        const selectedCnpj = this.lowerTariff[0].cnpj;
+        console.log(selectedCnpj)
+        axios.get("instituicoes/buscarPorCnpj" +
+           "?cnpj=" + selectedCnpj)
+          .then(response => {
+            this.instituicao = response.data;
+            console.log(this.instituicao);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+    },
   },
   watch: {
+    filteredData(newFilteredData, oldFilteredData) {
+    if (newFilteredData.length > 0) {
+      this.loadData();
+    }
+  },
     searchQuery(newSearchQuery: string, oldSearchQuery: string) {
       if (newSearchQuery !== oldSearchQuery) {
         this.currentPage = 1;
+        this.loadData();
       }
     },
+  },
+  mounted: function () {
+    this.loadData();
   },
   components: {
     RowsPerPageSelectorVue,
@@ -170,113 +220,4 @@ export default {
 };
 </script>
 
-<style>
-.table {
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 20px;
-  background-color: #f7f7f7;
-  border-radius: 8px;
-  border-spacing: 0;
-  text-align: center;
-  color: var(--color-text);
-}
 
-.table thead th {
-  border-top: none;
-  background-color: #f0f0f0;
-  font-weight: bold;
-  border: 1px solid #e7e7e7;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 1.2rem;
-  vertical-align: bottom;
-}
-
-.table thead th:first-child {
-  border-radius: 4px 0 0 0;
-}
-
-.table thead th:last-child {
-  border-radius: 0 4px 0 0;
-}
-
-.table tbody tr {
-  border: 1px solid #e7e7e7;
-}
-
-.table tbody td {
-  padding: 1rem;
-  font-weight: 400;
-  border: 1px solid #e7e7e7;
-}
-
-.table tbody tr:hover {
-  background-color: var(--vt-c-text-dark-2);
-  cursor: pointer;
-}
-
-.table tbody tr:nth-child(even) {
-  background-color: #f0f0f0;
-}
-
-.table tbody tr:last-child td:first-child {
-  border-bottom-left-radius: 10px;
-}
-
-.table tbody tr:last-child td:last-child {
-  border-bottom-right-radius: 10px;
-}
-
-.search-container {
-  justify-content: space-between;
-  display: flex;
-  align-items: center;
-}
-
-#myInput {
-  background-image: url("../assets/search.svg");
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  width: auto;
-  margin-left: 0.5rem;
-  display: inline-block;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin: 0px 8px 8px 0px;
-  outline: none;
-}
-
-.pagination {
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-}
-
-.pagination button {
-  margin: 0 5px;
-  padding: 5px 10px;
-  border: 1px solid #363131;
-  border-radius: 5px;
-  background: #363131;
-  color: #f0f0f0;
-  cursor: pointer;
-}
-
-.pagination span {
-  margin: 0 5px;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.pagination button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-#menorTarifa {
-  display: none;
-}
-</style>

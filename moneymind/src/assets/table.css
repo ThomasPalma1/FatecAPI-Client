@@ -1,0 +1,107 @@
+
+@import "./base.css";
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    border-spacing: 0;
+    text-align: center;
+    color: var(--color-text);
+  }
+  
+  .table thead th {
+    border-top: none;
+    background-color: #f0f0f0;
+    font-weight: bold;
+    border: 1px solid #e7e7e7;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 1.2rem;
+    vertical-align: bottom;
+  }
+  .table thead th:first-child {
+    border-radius: 4px 0 0 0;
+  }
+  .table thead th:last-child {
+    border-radius: 0 4px 0 0;
+  }
+  .table tbody tr {
+    border: 1px solid #e7e7e7;
+  }
+  
+  .table tbody td {
+    padding: 1rem;
+    font-weight: 400;
+    border: 1px solid #e7e7e7;
+  }
+  .table tbody tr:hover {
+    background-color: var(--vt-c-text-dark-2);
+    cursor: pointer;
+  }
+  .table tbody tr:nth-child(even) {
+    background-color: #f0f0f0;
+  }
+  
+  .table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+  }
+  
+  .table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+  }
+  
+  .search-container {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+  }
+  
+  #myInput {
+    background-image: url("../assets/search.svg");
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: auto;
+    margin-left: 0.5rem;
+    display: inline-block;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 0px 8px 8px 0px;
+    outline: none;
+  }
+  
+  .pagination {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #363131;
+    border-radius: 5px;
+    background: #363131;
+    color: #f0f0f0;
+    cursor: pointer;
+  }
+  
+  .pagination span {
+    margin: 0 5px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+.service-text {
+  font-weight: bold;
+}

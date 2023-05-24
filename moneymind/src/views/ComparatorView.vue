@@ -1,10 +1,10 @@
 <template>
   <div class="body">
     <h1>Comparador de serviços</h1>
-    <p>Selecione as opções abaixo para visualizar e comparar os serviços</p>
-    <FilterComparator @data-change="dataOnChange"/>
+    <p>Selecione as opções abaixo para fazer a comparação entre duas instituições e seus respectivos serviços</p>
+    <FilterComparator @data-change="dataOnChange"  @lower-tariff-change="lowerTariffOnChange"/>
     <div>
-      <DataTableComparator :data="data" />
+      <DataTableComparator :data="data" :lowerTariff="lowerTariff"/>
     </div>
   </div>
 </template>
@@ -21,11 +21,15 @@ export default {
 }, data(){
     return {
       data: [],
+      lowerTariff: [],
     };
   },
   methods: {
     dataOnChange(data: []) {
       this.data = data;
+    },
+    lowerTariffOnChange(data: []) {
+      this.lowerTariff = data;
     },
   },
 };

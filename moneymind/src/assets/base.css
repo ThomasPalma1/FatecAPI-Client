@@ -80,14 +80,21 @@ body {
 
 .grid-container {
   display: grid;
-  grid-template-columns: 0.9fr repeat(2, minmax(0, 1.1fr)) 0.3fr; /* Cria 4 colunas com largura igual */
+  grid-template-columns: 0.77fr repeat(2, 1.1fr) 0.3fr; /* Cria 4 colunas com largura igual */
   grid-gap: 8px; /* Define o espaçamento entre as colunas */
   margin-bottom: 8px;
 }
 
 .grid-container-two {
   display: grid;
-  grid-template-columns: repeat(2, 0.5fr) 0.2fr;
+  grid-template-columns:  0.4fr 0.2fr 0.15fr;
+  grid-gap: 30px; /* Define o espaçamento entre as colunas */
+  margin-bottom: 8px;
+}
+
+.grid-container-three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) 0.2fr;
   grid-gap: 8px; /* Define o espaçamento entre as colunas */
   margin-bottom: 8px;
 }
@@ -99,9 +106,12 @@ body {
 h1 {
   color: var(--color-text);
   font-weight: 600;
+  margin-bottom: 8px;
+  text-transform: uppercase;
 }
 
 p {
   color: var(--color-text);
   font-weight: 400;
+  margin-bottom: 8px;
 }
