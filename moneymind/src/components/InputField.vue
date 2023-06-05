@@ -1,7 +1,7 @@
 <template>
   <div class="input-container">
     <label class="label-input-field">{{ label }}</label>
-    <input :type="type" :placeholder="placeholder" v-model="inputValue" required class="input-field"/>
+    <input :type="type" :placeholder="placeholder" v-model="inputValue" required class="input-field" @change="onChange"/>
   </div>
 </template>
 
@@ -25,6 +25,11 @@ export default {
     return {
       inputValue: '',
     };
+  },
+  methods: {
+    onChange() {
+      this.$emit('onChange', this.inputValue);
+    },
   },
 };
 </script>
