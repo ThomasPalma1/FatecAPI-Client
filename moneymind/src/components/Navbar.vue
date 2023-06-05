@@ -7,21 +7,22 @@
       width="200"
       height="100"
     />
-    <router-link to="/">Dashboard</router-link>
+    <router-link to="/dashboard">Dashboard</router-link>
     <router-link to="/panel">Painel</router-link>
     <router-link to="/comparator">Comparador</router-link>
-    <Dropdown />
+    <router-link to="/"><IconPerfil/></router-link>
   </nav>
 </template>
 
 <script lang="ts">
-import Dropdown from "../components/Dropdown.vue";
+import IconPerfil from './icons/IconPerfil.vue';
+
 
 export default {
   name: "navbar",
   components: {
-    Dropdown,
-  },
+    IconPerfil,
+},
 };
 </script>
 
@@ -35,7 +36,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 8px;
-  padding-right: 3.5rem;
+  padding-right: 8rem;
   background-color: var(--vt-c-black-soft);
   color: var(--vt-c-white);
   width: 100%;
