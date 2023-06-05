@@ -10,6 +10,8 @@ import 'vue-toastification/dist/index.css';
 
 import "./assets/main.css";
 import "./assets/select.css";
+import "./assets/table.css";
+
 import HighchartsVue from "highcharts-vue"
 
 axios.defaults.baseURL = 'http://localhost:8080';

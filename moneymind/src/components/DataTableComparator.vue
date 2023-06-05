@@ -1,11 +1,11 @@
 <template>
   <div>
+    <p id="menorTarifa" v-if="lowerTariff.length > 0 && instituicao.length > 0">
+      Menor tarifa do serviço de {{ lowerTariff[0].nomeServico }}: <span class="service-text">{{ instituicao[0].nome }} - R$ {{ lowerTariff[0].valorMaximo }}</span> 
+    </p>
     <form @submit.prevent="onSearch">
       <div class="search-container">
-        <RowsPerPageSelectorVue
-          :selected-option="pageSize"
-          @option-changed="onRowsPerPageChanged"
-        />
+        <RowsPerPageSelectorVue :selected-option="pageSize" @option-changed="onRowsPerPageChanged" />
         <input v-model="searchQuery" id="myInput" placeholder="Buscar" />
       </div>
     </form>
@@ -44,11 +44,9 @@
       </tbody>
     </table>
     <div class="search-container">
-      <label
-        >Mostrando {{ (currentPage - 1) * pageSize + 1 }} a
+      <label>Mostrando {{ (currentPage - 1) * pageSize + 1 }} a
         {{ Math.min(currentPage * pageSize, data.length) }}
-        de {{data.length }} entradas</label
-      >
+        de {{ data.length }} entradas</label>
       <div class="pagination">
         <button :disabled="currentPage === 1" @click="currentPage--">
           Anterior
@@ -63,6 +61,7 @@
 </template>
 
 <script lang="ts">
+import axios from "axios";
 import RowsPerPageSelectorVue from "./RowsPerPageSelector.vue";
 import IconFilter from "./icons/IconFilter.vue";
 
@@ -81,10 +80,36 @@ interface Row {
   periodicidade: string;
 }
 
+interface LowerTariff {
+  [key: string]: string | number;
+
+  id: number;
+  servico: string;
+  nomeServico: string;
+  tipoPessoa: string;
+  cnpj: number;
+  unidade: string;
+  dataVigencia: string;
+  valorMaximo: number;
+  tipoValor: string;
+  periodicidade: string;
+}
+
+interface instituicao {
+  id: number;
+  nome: string;
+  cnpj: number;
+  codigoGrupo: number;
+}
+
 export default {
   props: {
     data: {
       type: Array,
+      required: true,
+    },
+    lowerTariff: {
+      type: Array as () => LowerTariff[],
       required: true,
     },
   },
@@ -92,6 +117,8 @@ export default {
     return {
       filterKey: "",
       sortKey: "",
+      instituicao: [] as instituicao[],
+      selectedCnpj: 0,
       sortOrders: {} as { [key: string]: number },
       searchQuery: "",
       currentPage: 1,
@@ -154,13 +181,37 @@ export default {
       console.log(event);
       this.currentPage = 1;
     },
+    loadData() {
+      if (this.lowerTariff.length > 0) {
+        const selectedCnpj = this.lowerTariff[0].cnpj;
+        console.log(selectedCnpj)
+        axios.get("instituicoes/buscarPorCnpj" +
+           "?cnpj=" + selectedCnpj)
+          .then(response => {
+            this.instituicao = response.data;
+            console.log(this.instituicao);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+    },
   },
   watch: {
+    filteredData(newFilteredData, oldFilteredData) {
+    if (newFilteredData.length > 0) {
+      this.loadData();
+    }
+  },
     searchQuery(newSearchQuery: string, oldSearchQuery: string) {
       if (newSearchQuery !== oldSearchQuery) {
         this.currentPage = 1;
+        this.loadData();
       }
     },
+  },
+  mounted: function () {
+    this.loadData();
   },
   components: {
     RowsPerPageSelectorVue,

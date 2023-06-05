@@ -1,56 +1,92 @@
 <template>
+  <div class="tabs">
+    <div class="tab-list">
+      <button
+        v-for="(tab, index) in tabs"
+        :key="index"
+        :class="['tab-button', { active: activeTab === index }]"
+        @click="changeTab(index)"
+      >
+        {{ tab.title }}
+      </button>
+    </div>
     <div>
-      <div class="tabs">
-        <div v-for="(tab, index) in tabs" :key="index" @click="selectedTab = index" :class="{ active: selectedTab === index }">
-          {{ tab.label }}
-        </div>
-      </div>
-      <div class="tab-content">
-        <component :is="tabs[selectedTab].component" />
+      <div
+        v-for="(tab, index) in tabs"
+        :key="index"
+        :class="['tab-pane', { active: activeTab === index }]"
+      >
+        <slot name="tab-content" :tab="tab" :activeTab="activeTab"></slot>
       </div>
     </div>
-  </template>
-  
-  <script lang="ts">
-  
-  interface Tab {
-    label: string;
-    component: string;
-  }
-  
-  export default({
-    name: "TabNavigation",
-    props: {
-      tabs: {
-        type: Array as () => Tab[],
-        required: true,
-      },
+  </div>
+</template>
+
+<script lang="ts">
+export default {
+  data() {
+    return {
+      activeTab: 0,
+      tabs: [
+        { title: 'LOGIN' },
+        { title: 'CADASTRO' },
+      ],
+    };
+  },
+  methods: {
+    changeTab(index: number) {
+      this.activeTab = index;
     },
-    data() {
-      return {
-        selectedTab: 0,
-      };
-    },
-  });
-  </script>
-  
-  <style>
-  .tabs {
-    display: flex;
-  }
-  
-  .tabs div {
-    padding: 10px;
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  
-  .tabs div.active {
-    background-color: #eee;
-  }
-  
-  .tab-content {
-    margin-top: 10px;
-  }
-  </style>
-  
+  },
+};
+</script>
+
+<style>
+.tabs {
+  margin-top: 40px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.tab-list {
+  display: flex;
+}
+
+.tab-button {
+  padding: 12px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: hsla(41, 62%, 51%, 1);
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: none;
+  outline: none;
+  width: 250px;
+}
+
+.tab-button:hover {
+  background-color: #e8e8e8;
+}
+
+.tab-button.active {
+  color: #333;
+  background-color: #fff;
+  border-bottom: 3px solid hsla(41, 62%, 51%, 1);
+  position: relative;
+  z-index: 1;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: flex;
+}
+</style>

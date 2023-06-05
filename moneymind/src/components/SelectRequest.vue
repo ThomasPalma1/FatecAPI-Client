@@ -57,7 +57,7 @@ export default {
     },
     truncatedText(option: string[]) {
       return option[0] === this.selectedOption
-        ? Vue.filter("truncate")(option[1], 30)
+        ? Vue.filter("truncate")(option[1], 25)
         : option[1];
     },
     async getDataAxios() {
@@ -100,7 +100,9 @@ export default {
     },
   },
   mounted: function () {
+    this.getDataAxios();
     this.getTypeData();
+    this.getDataProps();
   },
 };
 </script>
